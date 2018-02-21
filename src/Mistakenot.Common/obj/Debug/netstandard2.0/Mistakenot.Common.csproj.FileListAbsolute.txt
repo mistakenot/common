@@ -1,0 +1,8 @@
+/home/charlie/code/common/src/Mistakenot.Common/bin/Debug/netstandard2.0/Mistakenot.Common.deps.json
+/home/charlie/code/common/src/Mistakenot.Common/bin/Debug/netstandard2.0/Mistakenot.Common.dll
+/home/charlie/code/common/src/Mistakenot.Common/bin/Debug/netstandard2.0/Mistakenot.Common.pdb
+/home/charlie/code/common/src/Mistakenot.Common/obj/Debug/netstandard2.0/Mistakenot.Common.csproj.CoreCompileInputs.cache
+/home/charlie/code/common/src/Mistakenot.Common/obj/Debug/netstandard2.0/Mistakenot.Common.AssemblyInfoInputs.cache
+/home/charlie/code/common/src/Mistakenot.Common/obj/Debug/netstandard2.0/Mistakenot.Common.AssemblyInfo.cs
+/home/charlie/code/common/src/Mistakenot.Common/obj/Debug/netstandard2.0/Mistakenot.Common.dll
+/home/charlie/code/common/src/Mistakenot.Common/obj/Debug/netstandard2.0/Mistakenot.Common.pdb

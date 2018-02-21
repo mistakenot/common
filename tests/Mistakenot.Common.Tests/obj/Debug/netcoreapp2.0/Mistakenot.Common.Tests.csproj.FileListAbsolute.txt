@@ -1,0 +1,15 @@
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/bin/Debug/netcoreapp2.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/bin/Debug/netcoreapp2.0/xunit.runner.reporters.netcoreapp10.dll
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/bin/Debug/netcoreapp2.0/xunit.runner.utility.netcoreapp10.dll
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/bin/Debug/netcoreapp2.0/Mistakenot.Common.Tests.deps.json
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/bin/Debug/netcoreapp2.0/Mistakenot.Common.Tests.runtimeconfig.json
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/bin/Debug/netcoreapp2.0/Mistakenot.Common.Tests.runtimeconfig.dev.json
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/bin/Debug/netcoreapp2.0/Mistakenot.Common.Tests.dll
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/bin/Debug/netcoreapp2.0/Mistakenot.Common.Tests.pdb
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/bin/Debug/netcoreapp2.0/Mistakenot.Common.dll
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/bin/Debug/netcoreapp2.0/Mistakenot.Common.pdb
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/obj/Debug/netcoreapp2.0/Mistakenot.Common.Tests.csproj.CoreCompileInputs.cache
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/obj/Debug/netcoreapp2.0/Mistakenot.Common.Tests.AssemblyInfoInputs.cache
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/obj/Debug/netcoreapp2.0/Mistakenot.Common.Tests.AssemblyInfo.cs
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/obj/Debug/netcoreapp2.0/Mistakenot.Common.Tests.dll
+/home/charlie/code/common/tests/Mistakenot.Common.Tests/obj/Debug/netcoreapp2.0/Mistakenot.Common.Tests.pdb
