@@ -1,29 +1,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
-namespace Mistakenot.Common
+namespace Mistakenot.Common.Collections
 {
-    /// A dictionary that persists items to disc. FOR TESTING USES ONLY! HERE BE DRAGONS!
+    /// A dictionary that persists items to a backing store. FOR TESTING USES ONLY! HERE BE DRAGONS!
     public class PersistentDictionary<T, S>  : IDictionary<T, S>
     {
-        private readonly string _folder;
+        private readonly IPersistentDictionaryStorage _storage;
         private readonly Func<S, string> _serializer;
         private readonly Func<string, S> _deserializer;
         private readonly Func<T, string> _getKey;
         private readonly Dictionary<string, T> _keyCache;
 
         public PersistentDictionary(
-            string folder,
+            IPersistentDictionaryStorage storage,
             Func<S, string> serializer, 
             Func<string, S> deserializer,
             Func<T, string> getKey = null)
         {
-            _folder = folder;
-            _serializer = serializer;
-            _deserializer = deserializer;
+            _storage = storage ?? throw new ArgumentNullException(nameof(storage));
+            _serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
+            _deserializer = deserializer ?? throw new ArgumentNullException(nameof(deserializer));
             _getKey = getKey ?? (t => t.ToString());
             _keyCache = new Dictionary<string, T>();
         }
@@ -65,14 +64,11 @@ namespace Mistakenot.Common
 
         public IEnumerator<KeyValuePair<T, S>> GetEnumerator()
         {
-            return Directory.EnumerateFiles(_folder).Select(file =>
+            return _keyCache.Select(kv => 
             {
-                var path = Path.Combine(_folder, file);
-                var text = File.ReadAllText(path);
-                var value = _deserializer(text);
-                var key = _keyCache[file];
-
-                return new KeyValuePair<T, S>(key, value);
+                var valueString = _storage.Read(kv.Key);
+                var value = _deserializer(valueString);
+                return new KeyValuePair<T, S>(kv.Value, value);
             })
             .GetEnumerator();
         }
@@ -83,36 +79,31 @@ namespace Mistakenot.Common
 
         public bool TryGetValue(T key, out S value)
         {
-            throw new NotImplementedException();
+            if (Exists(key))
+            {
+                value = this[key];
+                return true;
+            }
+
+            value = default(S);
+            return false;
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         private void Write(T key, S value)
         {
-            if (!Directory.Exists(_folder))
-            {
-                Directory.CreateDirectory(_folder);
-            }
-
             var keyString = _getKey(key);
-            var path = Path.Combine(_folder, keyString);
-            var serializedValue = _serializer(value);
+            var valueString = _serializer(value);
 
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-
-            File.WriteAllText(path, serializedValue);
+            _storage.Write(keyString, valueString);
             _keyCache[keyString] = key;
         }
 
         private S Read(T key)
         {
             var keyString = _getKey(key);
-            var path = Path.Combine(_folder, keyString);
-            var text = File.ReadAllText(path);
+            var text = _storage.Read(keyString);
 
             if (text == null)
             {
@@ -125,29 +116,17 @@ namespace Mistakenot.Common
         private bool Delete(T key)
         {
             var keyString = _getKey(key);
-            var path = Path.Combine(_folder, keyString);
-            var found = false;
-
-            if (Exists(key))
-            {
-                File.Delete(path);
-                found = true;
-            }
+            _storage.Delete(keyString);
 
             if (_keyCache.ContainsKey(keyString))
             {
                 _keyCache.Remove(keyString);
+                return true;
             }
 
-            return found;
+            return false;
         }
 
-        private bool Exists(T key)
-        {
-            var keyString = _getKey(key);
-            var path = Path.Combine(_folder, keyString);
-
-            return File.Exists(path);
-        }
+        private bool Exists(T key) => _storage.Exists(_getKey(key));
     }
 }
