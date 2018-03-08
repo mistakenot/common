@@ -23,11 +23,20 @@ namespace Mistakenot.Common
                 }
                 else
                 {
+                    // This might not be threadsafe...
                     var result = func(param);
                     cache.Add(param, result);
                     return result;
                 }
             };
+        }
+
+        public static Func<T1, T2, S> Memoized<T1, T2, S>(
+            this Func<T1, T2, S> func,
+            bool threadSafe = false) 
+        {
+            var memoized = Memoized<(T1, T2), S>(t => func(t.Item1, t.Item2), threadSafe);
+            return (t1, t2) => memoized((t1, t2));
         }
     }
 }

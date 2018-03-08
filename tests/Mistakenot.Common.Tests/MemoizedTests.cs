@@ -18,10 +18,8 @@ namespace Mistakenot.Common.Tests
                     _firstTime = false;
                     return "memoized " + parameter;
                 }
-                else
-                {
-                    return "not ok";
-                }
+                
+                throw new Exception("Function not memoized");
             };
         }
 
@@ -42,6 +40,28 @@ namespace Mistakenot.Common.Tests
 
             var memoized = _getString.Memoized(threadSafe: true);
             AssertMemoized(memoized);
+        }
+
+        [Fact]
+        public void Memoized_TwoParamaters()
+        {
+            Assert.True(_firstTime);
+
+            Func<int, int, int> multiply = (x, y) => 
+            {
+                if (_firstTime)
+                {
+                    _firstTime = false;
+                    return x * y;
+                }
+
+                throw new Exception("Function not memoized");
+            };
+
+            var memoized = multiply.Memoized();
+            var _ = memoized(2, 3);
+            var actual = memoized(2, 3);
+            Assert.Equal(2*3, actual);
         }
 
         private void AssertMemoized(Func<object, string> memoized)
