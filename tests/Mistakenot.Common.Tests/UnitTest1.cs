@@ -3,12 +3,12 @@ using Xunit;
 
 namespace Mistakenot.Common.Tests
 {
-    public class UnitTest1
+    public class ConnectionStringTests
     {
         [Fact]
-        public void Test1()
+        public void ConnectionString_FromUri_ParsesOk()
         {
-
+            
         }
     }
 }
