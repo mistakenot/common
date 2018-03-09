@@ -1,7 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <PackageId>Mistakenot.Common</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Charlie Daly</Authors>
+    <Company>Mistakenot</Company>
+    <Description>A bundle of useful functions of varying quality.</Description>
+    <PackageProjectUrl>https://github.com/mistakenot/common</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mistakenot/common</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

@@ -14,5 +14,15 @@ namespace Mistakenot.Common.Tests
             
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void ConnectionString_FromUriNoPort_ParsesOk()
+        {
+            var uri = "postgres://postgres:test@localhost/db";
+            var actual = ConnectionString.FromPostgresUri(uri);
+            var expected = "Host=localhost;Database=db;Username=postgres;Password=test;";
+            
+            Assert.Equal(expected, actual);
+        }
     }
 }

@@ -35,16 +35,16 @@ namespace Mistakenot.Common
             this Func<T1, T2, S> func,
             bool threadSafe = false) 
         {
-            var memoized = Memoized<(T1, T2), S>(t => func(t.Item1, t.Item2), threadSafe);
-            return (t1, t2) => memoized((t1, t2));
+            var memoized = Memoized<Tuple<T1, T2>, S>(t => func(t.Item1, t.Item2), threadSafe);
+            return (t1, t2) => memoized(new Tuple<T1, T2>(t1, t2));
         }
 
         public static Func<T1, T2, S> Memoized<T1, T2, S>(
             this Func<T1, T2, S> func,
-            IDictionary<(T1, T2), S> cache) 
+            IDictionary<Tuple<T1, T2>, S> cache) 
         {
-            var memoized = Memoized<(T1, T2), S>(t => func(t.Item1, t.Item2), cache);
-            return (t1, t2) => memoized((t1, t2));
+            var memoized = Memoized<Tuple<T1, T2>, S>(t => func(t.Item1, t.Item2), cache);
+            return (t1, t2) => memoized(new Tuple<T1, T2>(t1, t2));
         }
     }
 }
